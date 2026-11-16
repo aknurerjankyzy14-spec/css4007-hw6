@@ -43,6 +43,11 @@ To run Part B:
 ```powershell
 .\.venv\Scripts\python.exe part_b.py
 ```
+To run Part C:
+
+```powershell
+.\.venv\Scripts\python.exe part_c.py
+```
 
 Recorded versions: [part_b_versions.txt](outputs/part_b_versions.txt).
 
@@ -316,8 +321,7 @@ probability 0.1. After hitting the wall, the agent stays on ice.
 The alternative route goes up the left side and crosses mud.
 Its discounted return is:
 
-−1 + 0.9 × (−1) + 0.9² × (−3)
-+ 0.9³ × (−1) + 0.9⁴ × 10 = 1.502.
+(-1) + 0.9 × (-1) + 0.9² × (-3) + 0.9³ × (-1) + 0.9⁴ × 10 = 1.502.
 
 The original start value is approximately 1.535824.
 This is slightly higher than 1.502, so the solver chooses the risky
