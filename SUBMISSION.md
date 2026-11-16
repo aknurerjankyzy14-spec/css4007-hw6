@@ -10,7 +10,12 @@ Record dependency versions, installation commands and exact run commands.
 
 ## Part A — Paper calculations
 
-Link your scan/photo here. Include V1 for every nonterminal tile, the three requested V2 calculations, best-action arrows/ties and your explanation. Commit this part before coding.
+Handwritten calculations:
+
+- [Page 1](evidence/part_a_1.jpeg)
+- [Page 2](evidence/part_a_2.jpeg)
+- [Page 3](evidence/part_a_3.jpeg)
+- [Page 4](evidence/part_a_4.jpeg)
 
 ## Part B — FrozenLake
 
