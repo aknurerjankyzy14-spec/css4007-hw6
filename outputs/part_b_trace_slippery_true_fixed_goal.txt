@@ -1,0 +1,112 @@
+Condition: slippery_true_fixed
+Policy: fixed
+Batch seed: 11
+Episode seed: 11020
+Initial state: 0
+
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 1: state=0, action=down, next_state=4, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 2: state=4, action=down, next_state=4, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 3: state=4, action=down, next_state=8, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 4: state=8, action=right, next_state=9, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 5: state=9, action=down, next_state=13, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 6: state=13, action=right, next_state=13, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 7: state=13, action=right, next_state=9, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 8: state=9, action=down, next_state=10, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 9: state=10, action=down, next_state=9, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 10: state=9, action=down, next_state=10, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 11: state=10, action=down, next_state=14, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 12: state=14, action=right, next_state=10, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 13: state=10, action=down, next_state=14, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 14: state=14, action=right, next_state=15, reward=1, terminated=True, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Outcome: goal
+Steps: 14
+Total reward: 1.0

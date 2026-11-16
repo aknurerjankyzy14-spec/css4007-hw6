@@ -1,0 +1,28 @@
+Condition: slippery_true_fixed
+Policy: fixed
+Batch seed: 11
+Episode seed: 11000
+Initial state: 0
+
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 1: state=0, action=down, next_state=1, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 2: state=1, action=right, next_state=5, reward=0, terminated=True, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Outcome: hole
+Steps: 2
+Total reward: 0.0

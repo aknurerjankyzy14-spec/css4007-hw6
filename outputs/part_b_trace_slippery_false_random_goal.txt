@@ -1,0 +1,133 @@
+Condition: slippery_false_random
+Policy: random
+Batch seed: 22
+Episode seed: 22006
+Initial state: 0
+
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 1: state=0, action=up, next_state=0, reward=0, terminated=False, truncated=False
+  (Up)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 2: state=0, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 3: state=0, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 4: state=0, action=up, next_state=0, reward=0, terminated=False, truncated=False
+  (Up)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 5: state=0, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 6: state=0, action=down, next_state=4, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 7: state=4, action=left, next_state=4, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 8: state=4, action=up, next_state=0, reward=0, terminated=False, truncated=False
+  (Up)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 9: state=0, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 10: state=0, action=up, next_state=0, reward=0, terminated=False, truncated=False
+  (Up)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 11: state=0, action=right, next_state=1, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 12: state=1, action=right, next_state=2, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 13: state=2, action=down, next_state=6, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 14: state=6, action=down, next_state=10, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 15: state=10, action=down, next_state=14, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 16: state=14, action=down, next_state=14, reward=0, terminated=False, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 17: state=14, action=right, next_state=15, reward=1, terminated=True, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Outcome: goal
+Steps: 17
+Total reward: 1.0

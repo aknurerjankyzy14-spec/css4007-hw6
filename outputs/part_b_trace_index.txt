@@ -1,0 +1,12 @@
+slippery_false_random: part_b_trace_slippery_false_random_hole.txt
+slippery_false_random: part_b_trace_slippery_false_random_goal.txt
+slippery_false_random: time limit was not observed in 150 episodes.
+slippery_false_fixed: part_b_trace_slippery_false_fixed_goal.txt
+slippery_false_fixed: hole was not observed in 150 episodes.
+slippery_false_fixed: time limit was not observed in 150 episodes.
+slippery_true_random: part_b_trace_slippery_true_random_hole.txt
+slippery_true_random: goal was not observed in 150 episodes.
+slippery_true_random: time limit was not observed in 150 episodes.
+slippery_true_fixed: part_b_trace_slippery_true_fixed_hole.txt
+slippery_true_fixed: part_b_trace_slippery_true_fixed_goal.txt
+slippery_true_fixed: time limit was not observed in 150 episodes.

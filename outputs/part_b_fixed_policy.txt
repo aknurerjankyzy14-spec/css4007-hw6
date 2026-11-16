@@ -1,0 +1,11 @@
+State 0: down
+State 1: right
+State 2: down
+State 3: left
+State 4: down
+State 6: down
+State 8: right
+State 9: down
+State 10: down
+State 13: right
+State 14: right

@@ -1,0 +1,6 @@
+Python: 3.13.2
+gymnasium: 1.4.0
+numpy: 2.5.5
+cloudpickle: 3.1.2
+typing-extensions: 4.16.0
+farama-notifications: 0.0.6

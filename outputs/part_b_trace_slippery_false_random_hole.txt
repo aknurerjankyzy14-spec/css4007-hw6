@@ -1,0 +1,56 @@
+Condition: slippery_false_random
+Policy: random
+Batch seed: 11
+Episode seed: 11000
+Initial state: 0
+
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 1: state=0, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 2: state=0, action=up, next_state=0, reward=0, terminated=False, truncated=False
+  (Up)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 3: state=0, action=right, next_state=1, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 4: state=1, action=left, next_state=0, reward=0, terminated=False, truncated=False
+  (Left)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 5: state=0, action=right, next_state=1, reward=0, terminated=False, truncated=False
+  (Right)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Step 6: state=1, action=down, next_state=5, reward=0, terminated=True, truncated=False
+  (Down)
+SFFF
+FHFH
+FFFH
+HFFG
+
+Outcome: hole
+Steps: 6
+Total reward: 0.0
