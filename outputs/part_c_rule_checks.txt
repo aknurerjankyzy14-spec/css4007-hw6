@@ -1,0 +1,47 @@
+Transition tuples below use zero-based coordinates.
+PASS: Boundary behavior
+  Up from (1,1): [(1.0, (0, 0), -1)]
+PASS: Wall collision on mud
+  Down from mud (1,2): [(1.0, (0, 1), -3)]
+PASS: Ice probabilities: up
+  [(0.8, (0, 2), -1), (0.1, (1, 2), -1), (0.1, (1, 3), -10)]
+PASS: Ice probabilities: right
+  [(0.8, (1, 3), -10), (0.1, (0, 2), -1), (0.1, (2, 2), -1)]
+PASS: Ice probabilities: down
+  [(0.8, (2, 2), -1), (0.1, (1, 3), -10), (0.1, (1, 2), -1)]
+PASS: Ice probabilities: left
+  [(0.8, (1, 2), -1), (0.1, (2, 2), -1), (0.1, (0, 2), -1)]
+PASS: Ice collision with wall
+  Chosen left on ice: [(0.8, (1, 2), -1), (0.1, (2, 2), -1), (0.1, (0, 2), -1)]
+PASS: Mud reward
+  [(1.0, (0, 1), -3)]
+PASS: Sand reward
+  [(1.0, (2, 1), -2)]
+PASS: Water reward
+  [(1.0, (2, 3), -5)]
+PASS: Goal reward
+  [(1.0, (0, 3), 10)]
+PASS: Hole reward
+  [(1.0, (1, 3), -10)]
+PASS: Entering ice
+  [(1.0, (1, 2), -1)]
+PASS: Deterministic movement from D
+  [(1.0, (2, 0), -1)]
+PASS: Deterministic movement from W
+  [(1.0, (2, 2), -1)]
+PASS: No rewards after G: up
+  [(1.0, (0, 3), 0.0)]
+PASS: No rewards after G: right
+  [(1.0, (0, 3), 0.0)]
+PASS: No rewards after G: down
+  [(1.0, (0, 3), 0.0)]
+PASS: No rewards after G: left
+  [(1.0, (0, 3), 0.0)]
+PASS: No rewards after H: up
+  [(1.0, (1, 3), 0.0)]
+PASS: No rewards after H: right
+  [(1.0, (1, 3), 0.0)]
+PASS: No rewards after H: down
+  [(1.0, (1, 3), 0.0)]
+PASS: No rewards after H: left
+  [(1.0, (1, 3), 0.0)]

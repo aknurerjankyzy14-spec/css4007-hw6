@@ -6,6 +6,10 @@ For Part B, ChatGPT generated the episode runner and result-saving
 code, suggested the fixed policy, and helped explain the results.
 I ran the program locally in PyCharm. The reported Part B results
 come from that local run.
+For Part C, ChatGPT generated the value iteration solver, custom
+simulator, rule checks and output-saving code. It also helped explain
+the results in English. I ran the program locally in PyCharm.
+The reported Part C results come from that local run.
 
 ## Setup and reproduction
 
@@ -185,22 +189,231 @@ These experiments evaluated existing policies.
 
 ### Compare code with paper
 
-Show V1 and the requested V2 values. Explain discrepancies.
+The program uses synchronous value iteration. Every update uses
+only the values from the previous round.
+
+The calculated V1 map is:
+
+```text
+-1    -1    10     0 (G)
+-1     #    -1     0 (H)
+-1    -1    -1    -1
+```
+
+The requested V2 values match my paper calculations:
+
+| Position | Paper V2 | Code V2 |
+| --- | ---: | ---: |
+| (1,2) | 8 | 8 |
+| (1,3) | 10 | 10 |
+| (2,3) | 5.21 | 5.21 |
+
+All four action values at each requested position also match.
+There were no numerical discrepancies to correct.
+
+[Full paper comparison](outputs/part_c_paper_comparison.txt)
 
 ### Values, policies and convergence
 
-Link both value/policy maps. Record iteration counts, final value changes and tie-breaking rule.
+The discount factor is 0.9. The stopping condition is a maximum
+absolute value change below 0.000001 over a full update.
+The iteration safeguard is 10,000 updates.
+
+| Map | Converged? | Iterations | Final maximum change | Start value |
+| --- | --- | ---: | ---: | ---: |
+| Original | Yes | 12 | 2.16529310482e-07 | 1.535824154 |
+| Extended | Yes | 11 | 2.40588123201e-07 | 1.502000000 |
+
+Both maps converged before the safeguard.
+
+The policy is extracted by comparing action values using the final
+state values. Actions within 1e-10 of the largest action value are
+treated as tied. The tie-breaking order is up, right, down, left.
+No tied best actions were found on either map.
+
+Original value map:
+
+```text
+4.200000    8.000000   10.000000    0.000000
+2.780000       #       5.824176    0.000000
+1.535824    2.817582    4.241758    2.817582
+```
+
+Original policy:
+
+```text
+→  →  →  G
+↑  #  ↑  H
+→  →  ↑  ←
+```
+
+Extended value map:
+
+```text
+4.200000    8.000000   10.000000    0.000000
+2.780000       #       5.824176    0.000000
+1.502000    2.817582    4.241758    2.817582
+```
+
+Extended policy:
+
+```text
+→  →  →  G
+↑  #  ↑  H
+↑  →  ↑  ←
+```
+
+Saved evidence:
+
+- [Original values and policy](outputs/part_c_original_maps.txt)
+- [Extended values and policy](outputs/part_c_extended_maps.txt)
+- [Original convergence history](outputs/part_c_original_iterations.csv)
+- [Extended convergence history](outputs/part_c_extended_iterations.csv)
+- [State-by-state comparison](outputs/part_c_map_comparison.txt)
+- [Separate floor rules](outputs/part_c_floor_rules.json)
+
+Floor rewards and movement types are stored in FLOOR_RULES,
+separately from value iteration. Sand and water use deterministic
+movement. Adding these floors did not require changing the solver.
 
 ### Simulation results
 
+Each map was evaluated using three batches of 50 episodes.
+The batch seeds were 11, 22 and 33. Episode i used the seed
+1000 × batch_seed + i, for i = 0,...,49.
+
+Each episode had a 100-step limit. Discounted return was calculated as:
+
+Return = r0 + 0.9 × r1 + 0.9² × r2 + ...
+
 | Map | Batch seed | Goals /50 | Holes /50 | Time limits /50 | Mean steps | Mean discounted return |
 | --- | --- | --- | --- | --- | --- | --- |
+| original | 11 | 42 | 8 | 0 | 4.98 | 0.891260 |
+| original | 22 | 46 | 4 | 0 | 5.04 | 1.914776 |
+| original | 33 | 48 | 2 | 0 | 5.04 | 2.492144 |
+| extended | 11 | 50 | 0 | 0 | 5.00 | 1.502000 |
+| extended | 22 | 50 | 0 | 0 | 5.00 | 1.502000 |
+| extended | 33 | 50 | 0 | 0 | 5.00 | 1.502000 |
+
+- [All 300 episodes](outputs/part_c_episodes.csv)
+- [Simulation summary](outputs/part_c_summary.csv)
+
 
 ### Explain your results
 
-Which values/actions changed with sand and water? Where did cost and risk matter? How do simulations relate to the computed values?
+#### Original map: cost and risk
+
+At the start, the original policy chooses right and moves toward ice.
+If no slips occur, its route is:
+
+(3,1) → (3,2) → (3,3) → (2,3) → (1,3) → G.
+
+This route avoids the mud cost but includes a risk of entering the hole.
+At ice, the best action is up. It moves up with probability 0.8,
+slips into the hole with probability 0.1, and hits the wall with
+probability 0.1. After hitting the wall, the agent stays on ice.
+
+The alternative route goes up the left side and crosses mud.
+Its discounted return is:
+
+−1 + 0.9 × (−1) + 0.9² × (−3)
++ 0.9³ × (−1) + 0.9⁴ × 10 = 1.502.
+
+The original start value is approximately 1.535824.
+This is slightly higher than 1.502, so the solver chooses the risky
+route through ice. It maximizes expected discounted reward,
+which is not the same as maximizing the probability of success.
+
+#### Extended map: effect of sand
+
+Entering (3,2) now gives −2 instead of −1.
+
+The action value of moving right from the start becomes approximately:
+
+−2 + 0.9 × 2.817582 = 0.535824.
+
+Moving up gives:
+
+−1 + 0.9 × 2.78 = 1.502.
+
+Therefore, the best start action changes from right to up.
+The new route is:
+
+(3,1) → (2,1) → (1,1) → (1,2) → (1,3) → G.
+
+This route crosses mud but avoids sand and ice. All movements on
+this route are deterministic. Every simulation therefore reaches
+the goal in five steps with a discounted return of 1.502.
+
+The start value decreases by approximately 0.033824.
+At six decimal places, all other state values remain unchanged,
+and no other best action changes.
+
+#### Effect of water and arrival rewards
+
+Water at (3,4) has an arrival reward of −5. It makes entering that
+cell less attractive. However, the optimal policy already avoided
+entering it on the original map, so it does not change the best actions.
+
+The value of the water cell itself remains approximately 2.817582.
+From that cell, the agent moves left onto ordinary floor and receives
+−1. The −5 cost applies when a move ends on water, not simply because
+the agent starts there.
+
+The same idea explains why the sand cell's own value is unchanged:
+its best action moves right onto ordinary floor.
+
+Small differences displayed as −0.000000 come from numerical
+approximation and the convergence threshold.
+
+#### Simulation results versus computed values
+
+On the original map, 136 of 150 episodes reached the goal,
+giving a success rate of about 90.67%.
+Fourteen episodes ended in holes.
+
+The batch mean discounted returns were 0.891260, 1.914776 and
+2.492144. Their combined mean was approximately 1.766060.
+This differs from the computed start value of 1.535824 because
+150 episodes are a finite random sample.
+
+Value iteration estimates the expected discounted return over
+the full future under the model. Individual episodes and finite
+sample averages do not have to equal that expectation.
+
+The simulations also have a 100-step limit, while the value calculation
+has no fixed step limit. No simulated episode reached the time limit,
+but this does not prove that longer episodes are impossible.
+
+On the extended map, the selected route is deterministic and ends
+after five steps. This explains why all observed returns equal the
+computed start value of 1.502.
+
+The extended policy achieved more goals in these runs, although
+its optimal expected discounted return is slightly lower. The higher
+floor costs changed the preferred balance between cost and risk.
+
 
 ### Rule checks
 
-Show boundary/wall behavior, slip probabilities, floor rewards and terminal handling.
+All implemented rule checks passed.
 
+| Check | Verified behavior |
+| --- | --- |
+| Boundary | Moving up from (1,1) stays at (1,1), reward −1 |
+| Wall from mud | Moving down from (1,2) stays on mud, reward −3 |
+| Ice probabilities | 0.8 + 0.1 + 0.1 = 1 for every action |
+| Ice wall collision | Choosing left on ice stays there with probability 0.8, reward −1 |
+| Mud entry | Reward −3 |
+| Sand entry | Reward −2 |
+| Water entry | Reward −5 |
+| Sand and water movement | Deterministic |
+| Goal entry | Reward +10 without an extra floor cost |
+| Hole entry | Reward −10 |
+| Ice entry | Entering ice from ordinary floor is deterministic |
+| Terminal handling | After G or H, further transitions give zero reward |
+
+Positions in the table use one-based coordinates.
+Transition tuples in the saved check file use zero-based coordinates.
+
+[Full rule checks](outputs/part_c_rule_checks.txt)

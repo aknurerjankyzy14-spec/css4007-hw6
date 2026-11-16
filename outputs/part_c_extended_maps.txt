@@ -1,0 +1,25 @@
+Map: extended
+.M.G
+.#IH
+SD.W
+
+Converged: True
+Iterations: 11
+Final maximum change: 2.40588123201e-07
+Start value: 1.502000000
+
+Values:
+   4.200000    8.000000   10.000000    0.000000
+   2.780000           #    5.824176    0.000000
+   1.502000    2.817582    4.241758    2.817582
+
+Policy:
+→  →  →  G
+↑  #  ↑  H
+↑  →  ↑  ←
+
+Tie rule: first of up, right, down, left.
+Tie tolerance: 1e-10
+
+Tied best actions:
+None.

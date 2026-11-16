@@ -1,0 +1,34 @@
+{
+  ".": {
+    "reward": -1,
+    "movement": "normal"
+  },
+  "S": {
+    "reward": -1,
+    "movement": "normal"
+  },
+  "M": {
+    "reward": -3,
+    "movement": "normal"
+  },
+  "I": {
+    "reward": -1,
+    "movement": "ice"
+  },
+  "D": {
+    "reward": -2,
+    "movement": "normal"
+  },
+  "W": {
+    "reward": -5,
+    "movement": "normal"
+  },
+  "G": {
+    "reward": 10,
+    "movement": "terminal"
+  },
+  "H": {
+    "reward": -10,
+    "movement": "terminal"
+  }
+}
